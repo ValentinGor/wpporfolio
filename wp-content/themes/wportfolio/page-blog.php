@@ -13,66 +13,28 @@ Template Post Type: page
                 </div>
             </div>
             <div class="col-lg-12">
-                <div class="blog__item">
-                    <div class="blog__item_head">
-                        <h2><a href="#">UI Interactions of the week</a></h2>
-                    </div>
-                    <div class="blog__item_info">
-                        <div class="blog__item_info-date">
-                            12 Feb 2019
-                        </div>
-                        <div class="blog__item_info-link">
-                            <a href="#">Design</a>
-                            ,
-                            <a href="#">Pattern</a>
-                        </div>
-                    </div>
-                    <div class="blog__item_text">
-                        <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit
-                            officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud
-                            amet.</p>
-                    </div>
-                </div>
-                <div class="blog__item">
-                    <div class="blog__item_head">
-                        <h2><a href="#">UI Interactions of the week</a></h2>
-                    </div>
-                    <div class="blog__item_info">
-                        <div class="blog__item_info-date">
-                            12 Feb 2019
-                        </div>
-                        <div class="blog__item_info-link">
-                            <a href="#">Design</a>
-                            ,
-                            <a href="#">Pattern</a>
-                        </div>
-                    </div>
-                    <div class="blog__item_text">
-                        <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit
-                            officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud
-                            amet.</p>
-                    </div>
-                </div>
-                <div class="blog__item">
-                    <div class="blog__item_head">
-                        <h2><a href="#">UI Interactions of the week</a></h2>
-                    </div>
-                    <div class="blog__item_info">
-                        <div class="blog__item_info-date">
-                            12 Feb 2019
-                        </div>
-                        <div class="blog__item_info-link">
-                            <a href="#">Design</a>
-                            ,
-                            <a href="#">Pattern</a>
-                        </div>
-                    </div>
-                    <div class="blog__item_text">
-                        <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit
-                            officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud
-                            amet.</p>
-                    </div>
-                </div>
+
+                <?php
+                // задаем нужные нам критерии выборки данных из БД
+                $args = array(
+                    'posts_per_page' => 4,
+                    'order'   => 'DESC'
+                );
+
+                $query = new WP_Query( $args );
+
+                // Цикл
+                if ( $query->have_posts() ) {
+                    while ( $query->have_posts() ) {
+                        $query->the_post();
+                        include 'inc/list-post.php';
+                    }
+                } else {
+                    // Постов не найдено
+                }
+                // Возвращаем оригинальные данные поста. Сбрасываем $post.
+                wp_reset_postdata();
+                ?>
             </div>
         </div>
     </div>

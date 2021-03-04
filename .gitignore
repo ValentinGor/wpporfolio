@@ -37,3 +37,6 @@ temp.php
 /node_modules/
 /package-lock.json
 /log/
+/index.php
+/.htaccess
+/wp-content/themes/twentytwentyone/

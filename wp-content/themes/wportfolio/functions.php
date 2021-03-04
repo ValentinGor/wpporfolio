@@ -212,6 +212,14 @@ if ( class_exists( 'WooCommerce' ) ) {
 require get_template_directory() . '/inc/carbon.php';
 
 /**
+ * Отключить стандартный текстовый редактор постов
+ */
+function disable_content_editor() {
+    remove_post_type_support( 'page', 'editor' );
+    remove_post_type_support( 'post', 'editor' );
+}
+
+/**
  * Разрешить загрузку svg
  */
 define('ALLOW_UNFILTERED_UPLOADS', true);
@@ -239,3 +247,5 @@ function rsssl_comment_remover($buffer)
 
     return $buffer;
 }
+
+

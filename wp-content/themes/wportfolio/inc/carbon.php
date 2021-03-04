@@ -52,16 +52,19 @@ function crb_attach_theme_options()
         ));
 
     // Содержимое Статьи
-    Container::make('post_meta', 'page-article', __('Article Content', 'wportfolio'))
+    Container::make('post_meta', 'page-articles', __('Article Content', 'wportfolio'))
         ->where('post_type', '=', 'post')
-        ->where('post_template', '=', 'post-page.php')
+        ->where('post_template', '=', 'page-articles.php')
         ->add_fields(array(
-            Field::make('text', 'article_num', __('Services Number', 'wportfolio'))
-                ->help_text("1 = Masks; 2 = Antibody tests; 3 = Gloves; 4 = On-demand"),
+            Field::make('textarea', 'articles_except', __('Articles except', 'wportfolio')),
 
-            Field::make('textarea', 'article_text', __('Article Text', 'wportfolio')),
-            Field::make('text', 'article_link_text', __('Article link text', 'wportfolio')),
-            Field::make('text', 'article_link_link', __('Article link link', 'wportfolio')),
+            Field::make('complex', 'articles_slide', __('Articles slide', 'wportfolio'))
+                ->add_fields(array(
+                    Field::make('image', 'articles_slide_image', __('Articles slide image', 'wportfolio'))
+                        ->set_value_type('url'),
+                )),
+
+            Field::make('rich_text', 'article_text', __('Articles text', 'wportfolio')),
         ));
 }
 
